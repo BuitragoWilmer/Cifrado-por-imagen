@@ -8,6 +8,7 @@ package Servicio;
 import Modelo.Auxiliar;
 import Modelo.Estructura;
 import java.awt.Color;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -87,7 +88,27 @@ public class OperacionBinaria {
 
         return rgbInt;
     }
-    
+     public void divisionporBloqueenFichero(StringBuilder bits, int dimensionBloque){
+        try {
+            // Ruta al ejecutable del script en C++
+            String rutaEjecutable = "Division.exe"; // En Windows
+            // String rutaEjecutable = "ruta/al/ejecutable/hola_mundo"; // En Unix/Linux
+            
+            // Crear el proceso para ejecutar el script en C++
+            ProcessBuilder pb = new ProcessBuilder(rutaEjecutable, bits.toString(),String.valueOf(dimensionBloque));
+
+            // Iniciar el proceso
+            Process proceso = pb.start();
+            
+            // Esperar a que el proceso termine
+            int resultado = proceso.waitFor();
+            
+            // Imprimir el resultado
+            System.out.println("El script en C++ ha finalizado con resultado: " + resultado);
+        } catch (IOException | InterruptedException ex) {
+            ex.printStackTrace();
+        }
+     }
     
     public String[] toNBitBlock(String bits, int tamaño){  
         String[] videoNbits = new String[ (int) Math.ceil(bits.length()/tamaño)+1];

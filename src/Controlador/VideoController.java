@@ -28,13 +28,14 @@ public class VideoController {
             byte[] video = videoService.conversionaBytes(Path);
             System.out.println("se ha convertido en byte: "+video.length);
             StringBuilder bits = operacionBinario.byteToBits(video);
+            
             int tamañobits = bits.length();
             //Libera espacio
             video=null;
+            
             System.out.println("se ha convertido en bits");
-            String[] videoBloque = operacionBinario.toNBitBlock(bits, tamañoBloque);
-            bits="";
-            System.out.println("bloques de a "+tamañoBloque+" generado: "+ videoBloque.length);
+            operacionBinario.divisionporBloqueenFichero(bits, tamañoBloque);
+   
 
             // Crear una imagen a partir del arreglo de bits
             BufferedImage imagen = videoService.crearImagenDesdeBits(videoBloque, tamañobits);
