@@ -26,6 +26,7 @@ public class ModificarVideo {
     private OperacionBinaria operacionBinario = new OperacionBinaria();
     private  EstructuraCodificacion estructuraPrincipal= new EstructuraCodificacion(0, 0, new BufferedImage(100, 100, BufferedImage.TYPE_INT_RGB));
     private boolean firstPixel=false;
+    
     public byte[] conversionaBytes(String path) throws Exception{
        try{
             File file = new File(path);

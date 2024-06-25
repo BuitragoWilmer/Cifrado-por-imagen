@@ -17,7 +17,7 @@ import java.util.List;
  *
  * @author Brayan
  */
-public class OperacionBinaria {
+public class Bits{
     
     private OperacionMatematica serviceMath;
     protected int N = 0;

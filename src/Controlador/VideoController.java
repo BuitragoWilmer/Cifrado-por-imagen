@@ -36,7 +36,6 @@ public class VideoController {
             System.out.println("se ha convertido en bits");
             operacionBinario.divisionporBloqueenFichero(bits, tamañoBloque);
    
-
             // Crear una imagen a partir del arreglo de bits
             BufferedImage imagen = videoService.crearImagenDesdeBits(videoBloque, tamañobits);
             System.out.println("Se ha generado el buffer de la imagen");
