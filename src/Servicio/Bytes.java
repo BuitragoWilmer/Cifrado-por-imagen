@@ -31,6 +31,9 @@ public class Bytes{
             // Agregar la cadena binaria al resultado
             bits.append(binario);
         }  
+        value = null;
+        System.gc();
+        
         return bits;
     }
     

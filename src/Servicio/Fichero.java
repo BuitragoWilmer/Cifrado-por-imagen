@@ -13,15 +13,15 @@ import java.io.IOException;
  *
  * @author Brayan
  */
-public class CargaPerezosa {
+public class Fichero {
     
     private String rutaArchivo;
 
-    public CargaPerezosa(String rutaArchivo) {
+    public Fichero(String rutaArchivo) {
         this.rutaArchivo = rutaArchivo;
     }
     
-    public void procesarContenido(PartesDelArchivoCallback callback, int tamanoBloque) {
+    public void CargarContenidoPorPartes(PartesDelArchivoCallback callback, int tamanoBloque) {
         char[] buffer = new char[tamanoBloque];
 
         try (BufferedReader br = new BufferedReader(new FileReader(rutaArchivo))) {

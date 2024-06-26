@@ -12,30 +12,22 @@ import java.awt.image.BufferedImage;
  * @author Brayan
  */
 public class EstructuraCodificacion {
-    private int Y;
-    private int X;
+    private int Y = 0;
+    private int X = 0;
     private BufferedImage imagen;
+    private int ancho;
 
-    public EstructuraCodificacion(int Y, int X, BufferedImage imagen) {
-        this.Y = Y;
-        this.X = X;
+    public EstructuraCodificacion(BufferedImage imagen,int ancho) {
         this.imagen = imagen;
+        this.ancho = ancho;
     }
 
     public int getY() {
         return Y;
     }
 
-    public void setY(int Y) {
-        this.Y = Y;
-    }
-
     public int getX() {
         return X;
-    }
-
-    public void setX(int X) {
-        this.X = X;
     }
 
     public BufferedImage getImagen() {
@@ -46,5 +38,13 @@ public class EstructuraCodificacion {
         this.imagen = imagen;
     }
     
-    
+    public void pintarPixel(int color){
+        if(X<ancho){
+            X++;
+        }else{
+            Y++;
+            X=0;
+        }
+        imagen.setRGB(X, Y, color);
+    }
 }

@@ -22,8 +22,7 @@ int main(int argc, char *argv[]) {
 
    	int division = dimension - 8;
    if (argc > 1) {
-	    // Cadena de ejemplo
-	    string cadena = argv[1]; // Ejemplo de cadena, deberías pasar la cadena desde Java
+	    string cadena = argv[1]; 
 	    
 	    // Abrir los archivos
 	    ofstream archivo1("almacenador.txt");
@@ -55,7 +54,8 @@ int main(int argc, char *argv[]) {
 	    }
 	    
 	    if(bitsAcumulados!=""){
-	   		archivo2<<bitsAcumulados;	
+	    	//bits sobrantes 
+	   		archivo2<<"S"<<bitsAcumulados;	
 		}
 	    
 	    // Cerrar los archivos

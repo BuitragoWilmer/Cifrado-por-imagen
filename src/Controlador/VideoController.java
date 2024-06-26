@@ -6,9 +6,10 @@
 package Controlador;
 
 import Modelo.Estructura;
-import Servicio.ModificarVideo;
-import Servicio.OperacionBinaria;
-import Servicio.OperacionBinaria;
+import Servicio.Bits;
+import Servicio.Bytes;
+import Servicio.Imagen;
+import Servicio.Video;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.logging.Level;
@@ -20,24 +21,44 @@ import java.util.logging.Logger;
  */
 public class VideoController {
     
-    ModificarVideo videoService = new ModificarVideo();
-    OperacionBinaria operacionBinario = new OperacionBinaria();
+    Video videoServicio = new Video();
+    Bits bitsServicio = new Bits();
+    Bytes bitesServicio = new Bytes();
+    
     
     public void codificarVideo(String Path, int tamañoBloque){
         try {
-            byte[] video = videoService.conversionaBytes(Path);
-            System.out.println("se ha convertido en byte: "+video.length);
-            StringBuilder bits = operacionBinario.byteToBits(video);
+            
+            byte[] video = videoServicio.ConversionABytes(Path);
+          
+            StringBuilder bits = bitesServicio.ConversionABits(video);
             
             int tamañobits = bits.length();
-            //Libera espacio
-            video=null;
             
-            System.out.println("se ha convertido en bits");
-            operacionBinario.divisionporBloqueenFichero(bits, tamañoBloque);
+            bitsServicio.GenerarFicheros(bits, tamañoBloque);
    
-            // Crear una imagen a partir del arreglo de bits
-            BufferedImage imagen = videoService.crearImagenDesdeBits(videoBloque, tamañobits);
+            // Crear una imagen
+            Imagen imagen = new Imagen(tamañobits);
+            
+            
+           // Crear hilos para leer los archivos en paralelo
+            Thread thread1 = new Thread(() -> readAndProcessFile(filePath1));
+            Thread thread2 = new Thread(() -> readAndProcessFile(filePath2));
+
+            // Iniciar los hilos
+            thread1.start();
+            thread2.start();
+
+            // Esperar a que los hilos terminen
+            try {
+                thread1.join();
+                thread2.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            
+            BufferedImage d = imagen.Generar();
             System.out.println("Se ha generado el buffer de la imagen");
             videoBloque=null;
             // Guardar la imagen en un archivo (por ejemplo, en formato PNG)
