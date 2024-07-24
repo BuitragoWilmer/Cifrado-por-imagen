@@ -30,7 +30,7 @@ public class VideoController {
     ByteService bitesServicio = new ByteService();
     ProcesamientoService procesar = new ProcesamientoService();
 
-    public VideoController() throws FileNotFoundException, IOException {
+    public VideoController() throws IOException {
         this.bitsServicio = new BitsService();
     }
     

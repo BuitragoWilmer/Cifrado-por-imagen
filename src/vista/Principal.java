@@ -7,6 +7,9 @@ package vista;
 
 import Controlador.VideoController;
 import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.text.NumberFormatter;
 import vista.Componentes.DragDrop;
@@ -20,12 +23,16 @@ public class Principal extends javax.swing.JFrame {
     /**
      * Creates new form Principal
      */
-    public Principal() {
+    
+    private  VideoController controller;
+    
+    public Principal() throws IOException {
         initComponents();
         jPanel4.setVisible(false);
+        controller = new VideoController() ;
     }
 
-    private VideoController controller = new VideoController();
+   
     private  File[] files  = new File[0];
     /**
      * This method is called from within the constructor to initialize the form.
@@ -776,7 +783,11 @@ public class Principal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Principal().setVisible(true);
+                try {
+                    new Principal().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

@@ -9,9 +9,13 @@ import com.formdev.flatlaf.FlatLightLaf;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import jdk.internal.org.objectweb.asm.tree.TryCatchBlockNode;
 import vista.Principal;
 
 /**
@@ -20,12 +24,22 @@ import vista.Principal;
  */
 public class CodificacionVideo {
 
-    private static final Principal principal = new Principal();
-
+    private static Principal principal;
     /**
      * @param args the command line arguments
-     */
+     */ 
+    static {
+    try {
+        principal = new Principal();
+    } catch (IOException e) {
+        throw new RuntimeException("Error initializing Principal", e);
+    }
+}
     public static void main(String[] args) throws UnsupportedLookAndFeelException{
+        
+        
+       
+         
         // TODO code application logic here
         UIManager.setLookAndFeel(new FlatLightLaf());
         SwingUtilities.updateComponentTreeUI(principal);
