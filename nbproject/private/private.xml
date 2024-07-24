@@ -3,15 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/Brayan/Documents/NetBeansProjects/CodificacionVideo/src/Modelo/RGB.java</file>
+            <file>file:/C:/Users/Brayan/Documents/NetBeansProjects/CodificacionVideo/src/Servicio/ficheroServicio.java</file>
+            <file>file:/C:/Users/Brayan/Documents/NetBeansProjects/CodificacionVideo/src/Modelo/Imagen.java</file>
+            <file>file:/C:/Users/Brayan/Documents/NetBeansProjects/CodificacionVideo/src/Modelo/Estructura.java</file>
+            <file>file:/C:/Users/Brayan/Documents/NetBeansProjects/CodificacionVideo/src/Modelo/Fichero.java</file>
             <file>file:/C:/Users/Brayan/Documents/NetBeansProjects/CodificacionVideo/src/Controlador/VideoController.java</file>
-            <file>file:/C:/Users/Brayan/Documents/NetBeansProjects/CodificacionVideo/src/Servicio/Bits.java</file>
+            <file>file:/C:/Users/Brayan/Documents/NetBeansProjects/CodificacionVideo/src/Servicio/ProcesamientoService.java</file>
             <file>file:/C:/Users/Brayan/Documents/NetBeansProjects/CodificacionVideo/src/Modelo/EstructuraCodificacion.java</file>
-            <file>file:/C:/Users/Brayan/Documents/NetBeansProjects/CodificacionVideo/src/Servicio/RGB.java</file>
-            <file>file:/C:/Users/Brayan/Documents/NetBeansProjects/CodificacionVideo/src/Servicio/Imagen.java</file>
+            <file>file:/C:/Users/Brayan/Documents/NetBeansProjects/CodificacionVideo/src/Servicio/ByteService.java</file>
             <file>file:/C:/Users/Brayan/Documents/NetBeansProjects/CodificacionVideo/src/Servicio/Video.java</file>
-            <file>file:/C:/Users/Brayan/Documents/NetBeansProjects/CodificacionVideo/src/Servicio/Bytes.java</file>
             <file>file:/C:/Users/Brayan/Documents/NetBeansProjects/CodificacionVideo/src/Servicio/OperacionMatematica.java</file>
-            <file>file:/C:/Users/Brayan/Documents/NetBeansProjects/CodificacionVideo/src/Servicio/Fichero.java</file>
+            <file>file:/C:/Users/Brayan/Documents/NetBeansProjects/CodificacionVideo/src/Servicio/BitsService.java</file>
         </group>
     </open-files>
 </project-private>

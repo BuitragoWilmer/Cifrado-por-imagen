@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Servicio;
+package Modelo;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -16,9 +16,12 @@ import java.io.IOException;
 public class Fichero {
     
     private String rutaArchivo;
+    
+    public int Tamaño;
 
     public Fichero(String rutaArchivo) {
         this.rutaArchivo = rutaArchivo;
+        this.Tamaño=CalcularTamaño();
     }
     
     public void CargarContenidoPorPartes(PartesDelArchivoCallback callback, int tamanoBloque) {
@@ -34,6 +37,19 @@ public class Fichero {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    
+    private int CalcularTamaño(){
+        int bytes=0;
+        try (BufferedReader lector = new BufferedReader(new FileReader(rutaArchivo))) {
+            String line;
+            while ((line = lector.readLine()) != null) {
+                bytes += line.split("\\s+").length;
+            } 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return bytes;
     }
     
     interface PartesDelArchivoCallback {

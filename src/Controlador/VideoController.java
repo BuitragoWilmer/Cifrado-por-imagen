@@ -6,12 +6,17 @@
 package Controlador;
 
 import Modelo.Estructura;
-import Servicio.Bits;
-import Servicio.Bytes;
-import Servicio.Imagen;
+import Servicio.BitsService;
+import Servicio.ByteService;
+import Modelo.Fichero;
+import Modelo.Imagen;
+import Servicio.ProcesamientoService;
 import Servicio.Video;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,57 +26,44 @@ import java.util.logging.Logger;
  */
 public class VideoController {
     
-    Video videoServicio = new Video();
-    Bits bitsServicio = new Bits();
-    Bytes bitesServicio = new Bytes();
-    
+    BitsService bitsServicio;
+    ByteService bitesServicio = new ByteService();
+    ProcesamientoService procesar = new ProcesamientoService();
+
+    public VideoController() throws FileNotFoundException, IOException {
+        this.bitsServicio = new BitsService();
+    }
     
     public void codificarVideo(String Path, int tamañoBloque){
         try {
             
-            byte[] video = videoServicio.ConversionABytes(Path);
+            bitesServicio.GenerarFicheroBinario(Path);
+            byte[] video = bitesServicio.ConversionABytes(Path);
           
-            StringBuilder bits = bitesServicio.ConversionABits(video);
-            
-            int tamañobits = bits.length();
-            
-            bitsServicio.GenerarFicheros(bits, tamañoBloque);
+            bitsServicio.ConversionABits(video);
+            bitsServicio.EscribirBitsenFichero(video);
+            bitsServicio.GenerarFicheros(tamañoBloque);
    
-            // Crear una imagen
-            Imagen imagen = new Imagen(tamañobits);
+            Fichero almacenador = new Fichero("almacenador.txt");
+            Fichero sobrante = new Fichero("Sobrante.txt");
             
+            Imagen almacenadorImg = new Imagen(almacenador);
+            Imagen sobranteImg = new Imagen(sobrante);
             
-           // Crear hilos para leer los archivos en paralelo
-            Thread thread1 = new Thread(() -> readAndProcessFile(filePath1));
-            Thread thread2 = new Thread(() -> readAndProcessFile(filePath2));
-
-            // Iniciar los hilos
-            thread1.start();
-            thread2.start();
-
-            // Esperar a que los hilos terminen
-            try {
-                thread1.join();
-                thread2.join();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
+            procesar.ImagenMultiHilo(almacenadorImg, sobranteImg);
             
-            BufferedImage d = imagen.Generar();
-            System.out.println("Se ha generado el buffer de la imagen");
-            videoBloque=null;
-            // Guardar la imagen en un archivo (por ejemplo, en formato PNG)
+            BufferedImage imagenCompleta = procesar.unificarImagenes(almacenadorImg.getImagen(), sobranteImg.getImagen());
+            
             File archivo = new File("imagen.png");
-            javax.imageio.ImageIO.write(imagen, "png", archivo);
-            System.out.println("Imagen creada y guardada correctamente.");     
+            javax.imageio.ImageIO.write(imagenCompleta, "png", archivo);
+      
         } catch (Exception ex) {
             Logger.getLogger(VideoController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
     public void DecodificarVideo(String Path, int tamañoBloque, String extension){
-        try {
+      /*  try {
             int tamañoOriginal = videoService.obtenerTamañoOriginal(Path);
             int bloquesPrincipal= (int)Math.ceil(tamañoOriginal/tamañoBloque);
             
@@ -80,7 +72,7 @@ public class VideoController {
             
         } catch (Exception ex) {
             Logger.getLogger(VideoController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
     }
-  
+    
 }

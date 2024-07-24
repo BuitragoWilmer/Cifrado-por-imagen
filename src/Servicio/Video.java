@@ -7,7 +7,6 @@ package Servicio;
 
 import Modelo.Estructura;
 import Modelo.EstructuraCodificacion;
-import Servicio.Fichero.PartesDelArchivoCallback;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -27,21 +26,7 @@ public class Video {
     //private  EstructuraCodificacion estructuraPrincipal= new EstructuraCodificacion(0, 0, new BufferedImage(100, 100, BufferedImage.TYPE_INT_RGB));
     private boolean firstPixel=false;
     
-    public byte[] ConversionABytes(String path) throws Exception{
-       try{
-            File file = new File(path);
-            FileInputStream fileInputStream = new FileInputStream(file);
-            byte[] bytesArray = new byte[(int) file.length()];
-            // Lee los bytes del archivo y los almacena en el array de bytes
-            fileInputStream.read(bytesArray);
-            fileInputStream.close();
-            return bytesArray;
-       }catch(FileNotFoundException i){
-           System.out.println("No se ha encontrado el archivo especificado");
-       }
-        return null;
-    }
-    
+    /*
     public int obtenerTamañoOriginal(String path) throws Exception{
        try {
             // Ruta de la imagen
@@ -64,7 +49,7 @@ public class Video {
             e.printStackTrace();
         }
        return 0;
-    }
+    }*/
     
      public void DescomponerImagen (String path) throws Exception{
        try {
@@ -89,7 +74,7 @@ public class Video {
                         int green = (pixel >> 8) & 0xFF;
                         int blue = pixel & 0xFF;
                         
-                        tamaño= operacionBinario.convertRGBToInt(red,green,blue);
+                       // tamaño= operacionBinario.convertRGBToInt(red,green,blue);
                         
                         System.out.println("tamaño:"+tamaño);
                     }
